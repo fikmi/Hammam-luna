@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid gap-8 lg:grid-cols-3">
+    <div class="lg:col-span-2 space-y-4">
+        <h1 class="text-3xl font-semibold">{{ product.name }}</h1>
+        <p class="text-slate-600">{{ product.description }}</p>
+        <p class="text-2xl font-bold">{{ pricing }} €</p>
+    </div>
+    <aside class="space-y-4">
+        <form method="post" action="{% url 'front:cart_add_product' product.pk %}">
+            {% csrf_token %}
+            <button class="w-full bg-slate-900 text-white px-4 py-2 rounded">Ajouter au panier</button>
+        </form>
+    </aside>
+</div>
+{% endblock %}

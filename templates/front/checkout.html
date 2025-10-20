@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-semibold mb-4">Paiement</h1>
+<div class="grid gap-8 md:grid-cols-2">
+    <section>
+        <h2 class="text-xl font-semibold mb-2">Votre panier</h2>
+        <ul class="space-y-2">
+            {% for item in cart.items %}
+                <li class="flex justify-between"><span>{{ item.name }}</span><span>{{ item.total }} €</span></li>
+            {% endfor %}
+        </ul>
+        <p class="text-right font-semibold mt-4">Total : {{ cart.total }} €</p>
+    </section>
+    <section>
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="bg-slate-900 text-white px-4 py-2 rounded w-full">Payer</button>
+        </form>
+    </section>
+</div>
+{% endblock %}

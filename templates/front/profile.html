@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-semibold mb-4">Mon compte</h1>
+<div class="grid gap-8 lg:grid-cols-3">
+    <section class="lg:col-span-1">
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="bg-slate-900 text-white px-4 py-2 rounded">Mettre à jour</button>
+        </form>
+    </section>
+    <section class="lg:col-span-2 space-y-6">
+        <div>
+            <h2 class="text-xl font-semibold mb-2">Commandes</h2>
+            <ul class="space-y-2">
+                {% for order in orders %}
+                    <li class="flex justify-between border rounded px-3 py-2">
+                        <span>#{{ order.id }} - {{ order.get_status_display }}</span>
+                        <span>{{ order.total }} €</span>
+                    </li>
+                {% empty %}
+                    <li>Aucune commande.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h2 class="text-xl font-semibold mb-2">Rendez-vous</h2>
+            <ul class="space-y-2">
+                {% for appointment in appointments %}
+                    <li class="flex justify-between border rounded px-3 py-2">
+                        <span>{{ appointment.service.name }} - {{ appointment.start_at|date:"d/m/Y H:i" }}</span>
+                        <span>{{ appointment.get_status_display }}</span>
+                    </li>
+                {% empty %}
+                    <li>Aucun rendez-vous.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+</div>
+{% endblock %}

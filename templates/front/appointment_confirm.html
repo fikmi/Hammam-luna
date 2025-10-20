@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-lg mx-auto text-center space-y-4">
+    <h1 class="text-3xl font-semibold">Rendez-vous confirmé</h1>
+    <p>Votre rendez-vous est planifié le {{ appointment.start_at|date:"d/m/Y H:i" }} avec {{ appointment.provider.name }}.</p>
+    <a href="{% url 'front:home' %}" class="text-slate-900">Retour à l'accueil</a>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="flex justify-between mb-4">
+    <h1 class="text-2xl font-semibold">Produits</h1>
+    <a href="{% url 'back:products:create' %}" class="bg-slate-900 text-white px-4 py-2 rounded">Nouveau</a>
+</div>
+<table class="min-w-full divide-y divide-slate-200">
+    <thead>
+        <tr>
+            <th class="px-3 py-2 text-left">Nom</th>
+            <th class="px-3 py-2 text-left">Prix</th>
+            <th class="px-3 py-2 text-left">Stock</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200">
+        {% for product in products %}
+            <tr>
+                <td class="px-3 py-2">{{ product.name }}</td>
+                <td class="px-3 py-2">{{ product.price }} €</td>
+                <td class="px-3 py-2">{{ product.stock_qty }}</td>
+                <td class="px-3 py-2 text-right"><a href="{% url 'back:products:update' product.pk %}" class="text-slate-900">Modifier</a></td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4" class="px-3 py-4">Aucun produit.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

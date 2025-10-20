@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Connexion - Hammam Luna{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto">
+    <h1 class="text-2xl font-semibold mb-4">Connexion</h1>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div>
+                <label class="block text-sm font-medium text-slate-700">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<p class="text-sm text-red-500">{{ field.errors|join:', ' }}</p>{% endif %}
+            </div>
+        {% endfor %}
+        <button class="w-full bg-slate-900 text-white py-2 rounded">Se connecter</button>
+        <div class="text-sm text-center"><a href="{% url 'password_reset' %}" class="text-slate-600">Mot de passe oublié ?</a></div>
+    </form>
+</div>
+{% endblock %}

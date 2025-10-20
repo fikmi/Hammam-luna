@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: sans-serif; }
+    </style>
+</head>
+<body>
+<h1>Avoir #{{ order.id }}</h1>
+<p>Montant remboursé : {{ order.total }} €</p>
+<p>Date : {{ order.updated_at|date:"d/m/Y" }}</p>
+</body>
+</html>

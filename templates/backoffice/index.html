@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-semibold mb-6">Backoffice</h1>
+<div class="grid gap-4 md:grid-cols-3">
+    <a href="{% url 'dashboard:index' %}" class="border rounded p-4">Tableau de bord</a>
+    <a href="{% url 'back:catalog:list' %}" class="border rounded p-4">Services</a>
+    <a href="{% url 'back:products:list' %}" class="border rounded p-4">Produits</a>
+    <a href="{% url 'back:providers:list' %}" class="border rounded p-4">Prestataires</a>
+    <a href="{% url 'back:pricing:list' %}" class="border rounded p-4">Règles de prix</a>
+    <a href="{% url 'back:orders:list' %}" class="border rounded p-4">Commandes</a>
+    <a href="{% url 'back:booking:calendar' %}" class="border rounded p-4">Planning</a>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Sécurité{% endblock %}
+{% block content %}
+<div class="max-w-lg mx-auto space-y-4">
+    <h1 class="text-2xl font-semibold">Double authentification</h1>
+    <p>Scannez ce QR code dans votre application d'authentification ou utilisez la clé ci-dessous.</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ uri|urlencode }}" alt="QR Code">
+    <code class="block p-4 bg-slate-100 rounded break-all">Secret : {{ secret }}</code>
+    <form method="post" class="space-y-3">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="bg-slate-900 text-white px-4 py-2 rounded">Mettre à jour</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid gap-8 lg:grid-cols-3">
+    <div class="lg:col-span-2 space-y-4">
+        <h1 class="text-3xl font-semibold">{{ service.name }}</h1>
+        <p class="text-slate-600">{{ service.description }}</p>
+        <p class="text-2xl font-bold">À partir de {{ pricing }} €</p>
+    </div>
+    <aside class="space-y-4">
+        <h2 class="text-xl font-semibold">Réserver</h2>
+        {% if user.is_authenticated %}
+            <a href="{% url 'front:appointment_book' service.pk %}" class="block text-center bg-slate-900 text-white px-4 py-2 rounded">Choisir un créneau</a>
+        {% else %}
+            <p class="text-sm">Connectez-vous pour réserver ce service.</p>
+            <a href="{% url 'account_login' %}" class="text-slate-900">Connexion</a>
+        {% endif %}
+        <form method="post" action="{% url 'front:cart_add_service' service.pk %}">
+            {% csrf_token %}
+            <button class="w-full border border-slate-900 text-slate-900 px-4 py-2 rounded">Ajouter au panier</button>
+        </form>
+    </aside>
+</div>
+{% endblock %}
