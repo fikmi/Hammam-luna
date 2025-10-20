@@ -71,12 +71,8 @@ ASGI_APPLICATION = "config.asgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB", "hammamluna"),
-        "USER": os.getenv("POSTGRES_USER", "hammamluna"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD", "hammamluna"),
-        "HOST": os.getenv("POSTGRES_HOST", "db" if os.getenv("USE_DOCKER") else "localhost"),
-        "PORT": os.getenv("POSTGRES_PORT", "5432"),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 

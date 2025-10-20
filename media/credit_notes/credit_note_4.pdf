@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: sans-serif; }
+    </style>
+</head>
+<body>
+<h1>Avoir #4</h1>
+<p>Montant remboursé : 80,00 €</p>
+<p>Date : 20/10/2025</p>
+</body>
+</html>
