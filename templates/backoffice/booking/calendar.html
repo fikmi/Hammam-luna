@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-4">Planning</h1>
+<table class="min-w-full divide-y divide-slate-200">
+    <thead>
+        <tr>
+            <th class="px-3 py-2 text-left">Service</th>
+            <th class="px-3 py-2 text-left">Client</th>
+            <th class="px-3 py-2 text-left">Prestataire</th>
+            <th class="px-3 py-2 text-left">Début</th>
+            <th class="px-3 py-2 text-left">Statut</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200">
+        {% for appointment in appointments %}
+            <tr>
+                <td class="px-3 py-2">{{ appointment.service.name }}</td>
+                <td class="px-3 py-2">{{ appointment.customer.name }}</td>
+                <td class="px-3 py-2">{{ appointment.provider.name }}</td>
+                <td class="px-3 py-2">{{ appointment.start_at|date:"d/m/Y H:i" }}</td>
+                <td class="px-3 py-2">{{ appointment.get_status_display }}</td>
+                <td class="px-3 py-2 text-right"><a href="{% url 'back:booking:update' appointment.pk %}" class="text-slate-900">Modifier</a></td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="6" class="px-3 py-4">Aucun rendez-vous.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

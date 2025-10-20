@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid gap-8 lg:grid-cols-2">
+    <section>
+        <h2 class="text-2xl font-semibold mb-4">Services populaires</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+            {% for service in services %}
+                <a href="{% url 'front:service_detail' service.pk %}" class="border rounded p-4 hover:shadow">
+                    <h3 class="text-lg font-medium">{{ service.name }}</h3>
+                    <p class="text-sm text-slate-600">{{ service.description|truncatewords:20 }}</p>
+                </a>
+            {% empty %}
+                <p>Aucun service disponible.</p>
+            {% endfor %}
+        </div>
+    </section>
+    <section>
+        <h2 class="text-2xl font-semibold mb-4">Produits à découvrir</h2>
+        <div class="grid gap-4 md:grid-cols-2">
+            {% for product in products %}
+                <a href="{% url 'front:product_detail' product.pk %}" class="border rounded p-4 hover:shadow">
+                    <h3 class="text-lg font-medium">{{ product.name }}</h3>
+                    <p class="text-sm text-slate-600">{{ product.description|truncatewords:20 }}</p>
+                </a>
+            {% empty %}
+                <p>Aucun produit disponible.</p>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

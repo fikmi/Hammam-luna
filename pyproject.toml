@@ -1,0 +1,45 @@
+[project]
+name = "hammam-luna"
+version = "0.1.0"
+description = "Plateforme de réservation et de commerce pour Hammam Luna"
+authors = [{name = "Hammam Luna"}]
+requires-python = ">=3.11"
+dependencies = [
+    "Django>=5.0",
+    "djangorestframework>=3.15",
+    "django-filter>=24.2",
+    "psycopg[binary]>=3.1",
+    "django-htmx>=1.17.0",
+    "django-crispy-forms>=2.1",
+    "crispy-tailwind>=0.5.0",
+    "weasyprint>=61.0",
+    "pyotp>=2.9",
+    "Pillow>=10.0",
+    "factory-boy>=3.3",
+    "pytest>=8.1",
+    "pytest-django>=4.8",
+    "pytest-factoryboy>=2.7",
+    "black>=24.4",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+pythonpath = ["."]
+addopts = "--reuse-db --nomigrations"
+
+[tool.black]
+line-length = 88
+
+[tool.ruff]
+select = ["E", "F", "I", "UP", "B", "DJ" ,"RUF"]
+line-length = 88
+
+[tool.mypy]
+python_version = "3.11"
+plugins = ["mypy_django_plugin.main"]
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings"

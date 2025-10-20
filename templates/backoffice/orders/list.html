@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-4">Commandes</h1>
+<table class="min-w-full divide-y divide-slate-200">
+    <thead>
+        <tr>
+            <th class="px-3 py-2 text-left">ID</th>
+            <th class="px-3 py-2 text-left">Client</th>
+            <th class="px-3 py-2 text-left">Total</th>
+            <th class="px-3 py-2 text-left">Statut</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200">
+        {% for order in orders %}
+            <tr>
+                <td class="px-3 py-2">#{{ order.id }}</td>
+                <td class="px-3 py-2">{{ order.customer.name }}</td>
+                <td class="px-3 py-2">{{ order.total }} €</td>
+                <td class="px-3 py-2">{{ order.get_status_display }}</td>
+                <td class="px-3 py-2 text-right"><a href="{% url 'back:orders:detail' order.pk %}" class="text-slate-900">Voir</a></td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="5" class="px-3 py-4">Aucune commande.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

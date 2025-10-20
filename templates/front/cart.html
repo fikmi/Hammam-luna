@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-3xl font-semibold mb-4">Panier</h1>
+<table class="min-w-full divide-y divide-slate-200 mb-4">
+    <thead>
+        <tr class="text-left">
+            <th class="px-3 py-2">Article</th>
+            <th class="px-3 py-2">Quantité</th>
+            <th class="px-3 py-2">Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200">
+        {% for item in cart.items %}
+            <tr>
+                <td class="px-3 py-2">{{ item.name }}</td>
+                <td class="px-3 py-2">{{ item.qty }}</td>
+                <td class="px-3 py-2">{{ item.total }} €</td>
+                <td class="px-3 py-2">
+                    <a href="{% url 'front:cart_remove' item.key %}" class="text-sm text-red-500">Retirer</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="4" class="px-3 py-4">Votre panier est vide</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p class="text-right text-xl font-semibold">Total : {{ cart.total }} €</p>
+<div class="mt-4 text-right">
+    <a href="{% url 'front:checkout' %}" class="inline-flex items-center bg-slate-900 text-white px-4 py-2 rounded">Commander</a>
+</div>
+{% endblock %}

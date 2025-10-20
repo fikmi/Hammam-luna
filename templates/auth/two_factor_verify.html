@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Vérification 2FA{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto">
+    <h1 class="text-2xl font-semibold mb-4">Entrez le code</h1>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="w-full bg-slate-900 text-white py-2 rounded">Valider</button>
+    </form>
+</div>
+{% endblock %}
